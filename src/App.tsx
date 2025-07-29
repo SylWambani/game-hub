@@ -1,7 +1,31 @@
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import {
+  Grid, GridItem, Show, useBreakpointValue
+  
+ } from "@chakra-ui/react";
 
 function App() {
-  return <Button>Click me</Button>;
+  const showAside = useBreakpointValue({ base: false, lg: true });
+
+  return (
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`, // devices wider than 1024px
+      }}
+    >
+      <GridItem area="nav" bg="coral">
+        Nav
+      </GridItem>
+      <Show when={showAside}>
+        <GridItem area="aside" bg="gold">
+          Aside
+        </GridItem>
+      </Show>
+      <GridItem area="main" bg="dodgerblue">
+        Main
+      </GridItem>
+    </Grid>
+  );
 }
 
 export default App;
