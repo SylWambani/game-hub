@@ -5,8 +5,12 @@ import {
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { useState } from "react";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
+  const[selectedgenre, setSelectedGenre]=useState<Genre|null>(null);
+  
   const showAside = useBreakpointValue({ base: false, lg: true });
 
   return (
@@ -25,11 +29,11 @@ function App() {
       </GridItem>
       <Show when={showAside}>
         <GridItem area="aside" paddingX={5}>
-          <GenreList/>
+          <GenreList onSelectGenre={(genre)=>setSelectedGenre(genre)}/>
         </GridItem>
       </Show>
       <GridItem area="main">
-       <GameGrid/>
+       <GameGrid selectedGenre={selectedgenre}/>
       </GridItem>
     </Grid>
   );
