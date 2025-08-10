@@ -15,7 +15,7 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre|null) => useData<Game>('/games',{params:{genres:selectedGenre?.id}}, [selectedGenre?.id]);
+const useGames = (selectedGenre: Genre|null, selectedPlatform:Platform|null) => useData<Game>('/games',{params:{genres:selectedGenre?.id, platforms:selectedPlatform?.id}}, [selectedGenre?.id, selectedPlatform?.id]);
 
 //cord before refactoring in the useData hook which is a generic hook
 /*interface FetchGameResponse {

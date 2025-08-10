@@ -8,9 +8,11 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import PlatFormSelector from "./components/PlatFormSelector";
+import { Platform } from "./hooks/useGames";
 
 function App() {
-  const[selectedgenre, setSelectedGenre]=useState<Genre|null>(null);
+  const [selectedgenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform]=useState<Platform | null>(null);
   
   const showAside = useBreakpointValue({ base: false, lg: true });
 
@@ -34,8 +36,8 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <PlatFormSelector/>
-       <GameGrid selectedGenre={selectedgenre}/>
+        <PlatFormSelector selectedPlatform={selectedPlatform} onSelectPlatform={(platform)=>setSelectedPlatform(platform)}/>
+       <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedgenre}/>
       </GridItem>
     </Grid>
   );
